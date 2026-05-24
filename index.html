@@ -177,7 +177,7 @@ body {
 }
 
 /* 카테고리 카드 */
-.cat-section { padding:24px 20px; max-width:720px; margin:0 auto; background:var(--ivory-soft); }
+.cat-section { padding:12px 16px; max-width:720px; margin:0 auto; background:var(--ivory-soft); }
 .cat-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -187,7 +187,7 @@ body {
   background:var(--ivory-soft);
   border:1px solid var(--ivory-mid);
   border-radius:12px;
-  padding:24px 12px;
+  padding:10px 8px;
   text-align:center;
   cursor:pointer;
   transition:all 0.22s;
@@ -195,8 +195,8 @@ body {
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  gap:6px;
-  min-height:90px;
+  gap:3px;
+  min-height:60px;
 }
 .cat-card:hover {
   background:var(--green-mist);
@@ -575,6 +575,165 @@ body.edit [contenteditable] {
   opacity:0.8;
 }
 
+/* ── 달력 ── */
+.cal-wrap {
+  padding: 20px 16px 8px;
+  background: var(--ivory-soft);
+  border-bottom: 1px solid var(--ivory-mid);
+}
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--green-deep);
+  letter-spacing: 0.05em;
+}
+.cal-nav {
+  background: none;
+  border: 1px solid var(--ivory-mid);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 13px;
+  color: var(--green-mid);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cal-nav:hover { background: var(--green-mist); }
+.cal-days-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-light);
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+.cal-cell {
+  min-height: 52px;
+  padding: 3px 2px;
+  border-radius: 6px;
+  position: relative;
+  cursor: default;
+}
+.cal-cell.has-class { cursor: pointer; }
+.cal-cell.other-month .cal-date { opacity: 0.3; }
+.cal-date {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+  text-align: center;
+}
+.cal-cell.sunday .cal-date { color: #c0392b; }
+.cal-cell.saturday .cal-date { color: #2980b9; }
+.cal-cell.today .cal-date {
+  background: var(--green-deep);
+  color: white;
+  border-radius: 50%;
+  width: 20px; height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2px;
+}
+.cal-tags { display: flex; flex-direction: column; gap: 1px; }
+.cal-tag {
+  font-size: 9px;
+  border-radius: 3px;
+  padding: 1px 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+}
+.cal-tag.oneday-tteok   { background: #d5f0dc; color: #1e5c2e; }
+.cal-tag.oneday-hangwa  { background: #d5f0dc; color: #1e5c2e; }
+.cal-tag.oneday-fusion  { background: #d5f0dc; color: #1e5c2e; }
+.cal-tag.regular-tteok  { background: #cce4f7; color: #1a4a6e; }
+.cal-tag.regular-hangwa { background: #fde8cc; color: #7a3d00; }
+.cal-tag.edit-add {
+  background: var(--ivory-mid);
+  color: var(--text-light);
+  text-align: center;
+  border: 1px dashed rgba(120,170,130,0.4);
+}
+.cal-legend {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 0 4px;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  color: var(--text-light);
+}
+.legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 2px;
+}
+.legend-dot.oneday-tteok   { background: #4a7c59; }
+.legend-dot.oneday-hangwa  { background: #4a7c59; }
+.legend-dot.oneday-fusion  { background: #4a7c59; }
+.legend-dot.regular-tteok  { background: #2980b9; }
+.legend-dot.regular-hangwa { background: #e67e22; }
+
+/* 수업 추가 모달 */
+.cal-modal-bg {
+  display: none;
+  position: fixed; inset: 0; z-index: 300;
+  background: rgba(40,53,42,0.55);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.cal-modal-bg.open { display: flex; }
+.cal-modal {
+  background: var(--ivory-soft);
+  border-radius: 14px;
+  padding: 24px 20px;
+  width: 100%; max-width: 320px;
+}
+.cal-modal-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  color: var(--green-deep);
+  margin-bottom: 16px;
+  text-align: center;
+}
+.cal-modal-select {
+  width: 100%;
+  background: var(--green-mist);
+  border: 1px solid rgba(120,170,130,0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 13px;
+  color: var(--text-dark);
+  outline: none;
+  margin-bottom: 8px;
+}
+.cal-modal-btns { display: flex; gap: 8px; margin-top: 4px; }
+
 /* ── FOOTER ── */
 footer {
   border-top:1px solid var(--ivory-mid);
@@ -629,16 +788,26 @@ footer {
       </div>
     </div>
   </div>
-  <div class="hero">
-    <p class="hero-eyebrow">MORAKMORAK · 한식 디저트 공방</p>
-    <h1 class="hero-title">전통의 맛을<br><em>모락모락</em> 피우다</h1>
-    <div class="hero-line"></div>
-    <p class="hero-desc">우리 식재료로 정성껏 빚는 떡과 한과<br>소중한 사람과 함께하는 한식 디저트 수업</p>
-    <div class="home-links">
-      <a href="https://blog.naver.com/morakmorak2006" target="_blank" class="home-link-btn">📝 네이버 블로그</a>
-      <a href="https://instagram.com/morakmorak" target="_blank" class="home-link-btn">📸 인스타그램</a>
+  <!-- 달력 -->
+  <div class="cal-wrap">
+    <div class="cal-header">
+      <button class="cal-nav" onclick="calMove(-1)">◀</button>
+      <span class="cal-title" id="cal-title"></span>
+      <button class="cal-nav" onclick="calMove(1)">▶</button>
+    </div>
+    <div class="cal-days-header">
+      <span style="color:#c0392b">일</span>
+      <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span>
+      <span style="color:#2980b9">토</span>
+    </div>
+    <div class="cal-grid" id="cal-grid"></div>
+    <div class="cal-legend">
+      <span class="legend-item"><span class="legend-dot oneday-tteok"></span>하루수업</span>
+      <span class="legend-item"><span class="legend-dot regular-tteok"></span>우리떡 정규</span>
+      <span class="legend-item"><span class="legend-dot regular-hangwa"></span>한과 정규</span>
     </div>
   </div>
+
   <div class="info-strip">
     <div class="info-item">
       <span class="info-icon">📍</span>
@@ -655,6 +824,12 @@ footer {
       <span class="info-label">상담 문의</span>
       <div class="info-val" style="cursor:pointer;color:var(--green-mid)" onclick="openKakao()">카카오채널<br>바로가기</div>
     </div>
+  </div>
+
+  <!-- 블로그/인스타 -->
+  <div class="home-links" style="padding:16px 20px 24px">
+    <a href="https://blog.naver.com/morakmorak2006" target="_blank" class="home-link-btn">📝 네이버 블로그</a>
+    <a href="https://instagram.com/morakmorak" target="_blank" class="home-link-btn">📸 인스타그램</a>
   </div>
 </div>
 
@@ -778,6 +953,28 @@ footer {
   </div>
 </div>
 
+<!-- 달력 수업 추가 모달 -->
+<div class="cal-modal-bg" id="cal-modal-bg" onclick="if(event.target===this)closeCalModal()">
+  <div class="cal-modal">
+    <p class="cal-modal-title" id="cal-modal-date"></p>
+    <select class="cal-modal-select" id="cal-class-type" onchange="updateCalMenuDropdown()">
+      <option value="oneday-tteok">떡 하루수업</option>
+      <option value="oneday-hangwa">한과 하루수업</option>
+      <option value="oneday-fusion">퓨전 하루수업</option>
+      <option value="regular-tteok">우리떡 정규반</option>
+      <option value="regular-hangwa">한과 정규반</option>
+    </select>
+    <select class="cal-modal-select" id="cal-class-menu">
+      <option value="">메뉴 선택</option>
+    </select>
+    <div id="cal-existing-list" style="margin:8px 0;display:flex;flex-direction:column;gap:4px;"></div>
+    <div class="cal-modal-btns">
+      <button class="mbtn cancel" onclick="closeCalModal()">취소</button>
+      <button class="mbtn ok" onclick="confirmCalClass()">추가</button>
+    </div>
+  </div>
+</div>
+
 <!-- 편집 버튼 -->
 <div class="toolbar">
   <button class="edit-btn" id="edit-btn" onclick="toggleEdit()">✏️ 편집</button>
@@ -806,21 +1003,38 @@ footer {
 <script>
 const MENUS = {
   떡: [
-    { id:'d1',  name:'이북인절미',      emoji:'🍡', sub:'기본 · 녹두' },
-    { id:'d2',  name:'이북인절미 6종',  emoji:'🍡', sub:'기본 · 녹두 · 쑥 · 흑임자 · 유자 · 말차' },
-    { id:'d3',  name:'인절미 4종',      emoji:'🍡', sub:'흑임자&유자 · 쑥 · 단호박 · 초코' },
-    { id:'d4',  name:'찰편 4종',        emoji:'🍘', sub:'쇠머리떡 · 무화과흑미찰편 · 검은깨구름떡 · 호두찰편' },
-    { id:'d5',  name:'증편',            emoji:'🍮', sub:'' },
-    { id:'d6',  name:'꽃송편 12종',     emoji:'🌸', sub:'' },
-    { id:'d7',  name:'바람떡',          emoji:'🌬️', sub:'' },
-    { id:'d8',  name:'백일떡 3종',      emoji:'🎀', sub:'꿀설기 · 수수팥떡 · 도장송편' },
-    { id:'d9',  name:'설기 4종',        emoji:'⬜', sub:'꿀설기 · 말차 · 라즈베리 · 단호박' },
-    { id:'d10', name:'대추고 약식',     emoji:'🌰', sub:'대추고 · 전통약식' },
-    { id:'d11', name:'약식 3종',        emoji:'🍯', sub:'대추고약식 · 인삼약식 · 유자약식' },
-    { id:'d12', name:'단자 5종',        emoji:'🟤', sub:'흑미 · 유자 · 사과 · 쑥 · 곶감 + 피칸정과 · 사과정과' },
+    { id:'d1',  name:'증편', sub:'' },
+    { id:'d2',  name:'이북인절미 - 기본', sub:'기본 · 녹두' },
+    { id:'d3',  name:'이북인절미 - 6종', sub:'기본 · 녹두 · 쑥 · 흑임자 · 유자 · 말차' },
+    { id:'d4',  name:'인절미 4종', sub:'흑임자&유자 · 단호박 · 쑥 · 초코' },
+    { id:'d5',  name:'개성주악', sub:'' },
+    { id:'d6',  name:'찰편 4종', sub:'쇠머리떡 · 흑미무화과찰편 · 호두찰편 · 흑임자구름떡' },
+    { id:'d7',  name:'바람떡 & 절편', sub:'' },
+    { id:'d8',  name:'대추고 약식', sub:'' },
+    { id:'d9',  name:'약식 3종', sub:'' },
+    { id:'d10', name:'꽃송편', sub:'' },
+    { id:'d11', name:'딸기 찹쌀떡', sub:'' },
   ],
-  한과: [],
-  디저트: []
+  한과: [
+    { id:'h1',  name:'새우포 & 하설다식', sub:'' },
+    { id:'h2',  name:'다식 12종', sub:'' },
+    { id:'h3',  name:'개성약과 - 기본', sub:'' },
+    { id:'h4',  name:'개성약과 - 대용량', sub:'' },
+    { id:'h5',  name:'숙실과', sub:'율란 · 조란 · 강란 & 잣솔' },
+    { id:'h6',  name:'곶감 시리즈', sub:'곶감단지 3종 · 곶감말이 · 곶감잣오림' },
+    { id:'h7',  name:'찹쌀약과 · 가나슈 찹쌀약과', sub:'' },
+    { id:'h8',  name:'인삼편정과 & 대추정과', sub:'' },
+    { id:'h9',  name:'잣박산 & 디자인 깨엿강정 · 매작과', sub:'' },
+    { id:'h10', name:'올리브정과 & 아몬드강정', sub:'' },
+  ],
+  디저트: [
+    { id:'f1', name:'누룽지 크리스피', sub:'' },
+    { id:'f2', name:'모나카 견과칩', sub:'' },
+    { id:'f3', name:'오란다', sub:'' },
+    { id:'f4', name:'과일쌀강정', sub:'' },
+    { id:'f5', name:'찰떡스퀘어 시즌1', sub:'' },
+    { id:'f6', name:'찰떡스퀘어 시즌2', sub:'' },
+  ]
 };
 
 const DETAILS = {};
@@ -1154,7 +1368,210 @@ document.getElementById('m-name').addEventListener('keydown', e => { if(e.key===
 
 function openKakao() { window.open('http://pf.kakao.com/_xixgjxfd/chat', '_blank'); }
 
+// ── 달력 ──
+let calYear = new Date().getFullYear();
+let calMonth = new Date().getMonth();
+let calData = {}; // { 'YYYY-MM-DD': [{type, menuId, menuName, cat}] }
+let calSelDate = null;
+
+function calKey(y, m, d) {
+  return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+}
+
+function renderCal() {
+  const title = document.getElementById('cal-title');
+  if (!title) return;
+  title.textContent = `${calYear}년 ${calMonth+1}월`;
+
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+
+  const today = new Date();
+  const firstDay = new Date(calYear, calMonth, 1).getDay(); // 0=일
+  const lastDate = new Date(calYear, calMonth+1, 0).getDate();
+  const prevLastDate = new Date(calYear, calMonth, 0).getDate();
+
+  let cells = [];
+  // 이전 달
+  for (let i = firstDay-1; i >= 0; i--) {
+    cells.push({ d: prevLastDate-i, cur: false, m: calMonth-1 });
+  }
+  // 이번 달
+  for (let d = 1; d <= lastDate; d++) {
+    cells.push({ d, cur: true, m: calMonth });
+  }
+  // 다음 달
+  let next = 1;
+  while (cells.length % 7 !== 0) {
+    cells.push({ d: next++, cur: false, m: calMonth+1 });
+  }
+
+  cells.forEach((c, idx) => {
+    const cell = document.createElement('div');
+    const dayOfWeek = idx % 7;
+    const isToday = c.cur && c.d === today.getDate() && calMonth === today.getMonth() && calYear === today.getFullYear();
+    const key = calKey(calYear, c.cur ? calMonth : (c.m < 0 ? calMonth-1 : calMonth+1 > 11 ? calMonth+1 : c.m), c.d);
+    const events = calData[key] || [];
+
+    cell.className = 'cal-cell' +
+      (c.cur ? '' : ' other-month') +
+      (dayOfWeek === 0 ? ' sunday' : '') +
+      (dayOfWeek === 6 ? ' saturday' : '') +
+      (isToday ? ' today' : '') +
+      (events.length > 0 ? ' has-class' : '');
+
+    const dateDiv = document.createElement('div');
+    dateDiv.className = 'cal-date';
+    dateDiv.textContent = c.d;
+    cell.appendChild(dateDiv);
+
+    const tags = document.createElement('div');
+    tags.className = 'cal-tags';
+
+    events.forEach(ev => {
+      const tag = document.createElement('div');
+      tag.className = 'cal-tag ' + ev.type;
+      tag.textContent = ev.menuName;
+      tag.onclick = e => {
+        e.stopPropagation();
+        if (ev.menuId && ev.cat) openDetail(ev.menuId, ev.cat);
+      };
+      tags.appendChild(tag);
+    });
+
+    // 편집모드면 + 버튼
+    if (editMode && c.cur) {
+      const addTag = document.createElement('div');
+      addTag.className = 'cal-tag edit-add';
+      addTag.textContent = '+';
+      addTag.onclick = e => { e.stopPropagation(); openCalModal(calYear, calMonth, c.d, key); };
+      tags.appendChild(addTag);
+    }
+
+    cell.appendChild(tags);
+    grid.appendChild(cell);
+  });
+}
+
+function calMove(dir) {
+  calMonth += dir;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCal();
+}
+
+function openCalModal(y, m, d, key) {
+  calSelDate = key;
+  const dateStr = `${y}년 ${m+1}월 ${d}일`;
+  document.getElementById('cal-modal-date').textContent = dateStr + ' 수업 추가';
+
+  // 기존 수업 목록 표시
+  const existing = document.getElementById('cal-existing-list');
+  existing.innerHTML = '';
+  (calData[key] || []).forEach((ev, i) => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;justify-content:space-between;background:var(--green-mist);border-radius:6px;padding:5px 10px;font-size:12px;margin-bottom:4px;';
+    row.innerHTML = `<span>${ev.menuName}</span><button onclick="removeCalClass('${key}',${i})" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:14px;">×</button>`;
+    existing.appendChild(row);
+  });
+
+  updateCalMenuDropdown();
+  document.getElementById('cal-modal-bg').classList.add('open');
+}
+
+function updateCalMenuDropdown() {
+  const type = document.getElementById('cal-class-type').value;
+  const sel = document.getElementById('cal-class-menu');
+  sel.innerHTML = '<option value="">메뉴 선택</option>';
+
+  if (type === 'oneday-tteok') {
+    MENUS['떡'].forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ menuId: m.id, menuName: m.name, cat: '떡', isRegular: false });
+      opt.textContent = m.name + (m.sub ? ` (${m.sub})` : '');
+      sel.appendChild(opt);
+    });
+  } else if (type === 'oneday-hangwa') {
+    MENUS['한과'].forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ menuId: m.id, menuName: m.name, cat: '한과', isRegular: false });
+      opt.textContent = m.name + (m.sub ? ` (${m.sub})` : '');
+      sel.appendChild(opt);
+    });
+  } else if (type === 'oneday-fusion') {
+    MENUS['디저트'].forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ menuId: m.id, menuName: m.name, cat: '디저트', isRegular: false });
+      opt.textContent = m.name;
+      sel.appendChild(opt);
+    });
+  } else if (type === 'regular-tteok') {
+    REGULAR_TTEOK.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ menuId: m.id, menuName: m.name, cat: null, isRegular: true });
+      opt.textContent = m.name;
+      sel.appendChild(opt);
+    });
+  } else if (type === 'regular-hangwa') {
+    REGULAR_HANGWA.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = JSON.stringify({ menuId: m.id, menuName: m.name, cat: null, isRegular: true });
+      opt.textContent = m.name;
+      sel.appendChild(opt);
+    });
+  }
+}
+
+function closeCalModal() {
+  document.getElementById('cal-modal-bg').classList.remove('open');
+  calSelDate = null;
+}
+
+function confirmCalClass() {
+  const type = document.getElementById('cal-class-type').value;
+  const menuVal = document.getElementById('cal-class-menu').value;
+  if (!menuVal || !calSelDate) return;
+  const { menuId, menuName, cat } = JSON.parse(menuVal);
+  if (!calData[calSelDate]) calData[calSelDate] = [];
+  calData[calSelDate].push({ type, menuId, menuName, cat });
+  closeCalModal();
+  renderCal();
+}
+
+function removeCalClass(key, idx) {
+  calData[key].splice(idx, 1);
+  if (calData[key].length === 0) delete calData[key];
+  renderCal();
+  // 모달 다시 열기
+  const [y, m, d] = key.split('-').map(Number);
+  openCalModal(y, m-1, d, key);
+}
+
+// ── 정규반 메뉴 데이터 ──
+const REGULAR_TTEOK = [
+  { id:'rt1', name:'우리떡1 - 인절미 4종 & 이북인절미 6종' },
+  { id:'rt2', name:'우리떡2 - 찰편 4종' },
+  { id:'rt3', name:'우리떡3 - 조각설기 4종' },
+  { id:'rt4', name:'우리떡4 - 절편 & 바람떡' },
+  { id:'rt5', name:'우리떡5 - 단자 5종' },
+  { id:'rt6', name:'우리떡6 - 두텁떡, 대추고약식, 인삼약식' },
+  { id:'rt7', name:'우리떡7 - 모양송편 12종' },
+  { id:'rt8', name:'우리떡8 - 백일 · 돌 상차림' },
+];
+
+const REGULAR_HANGWA = [
+  { id:'rh1', name:'한과정규1 - 다식 12종' },
+  { id:'rh2', name:'한과정규2 - 율란·조란·강란 & 잣솔' },
+  { id:'rh3', name:'한과정규3 - 곶감단지, 곶감말이, 곶감잣오림' },
+  { id:'rh4', name:'한과정규4 - 찹쌀약과(다식과)·만두과' },
+  { id:'rh5', name:'한과정규5 - 개성약과' },
+  { id:'rh6', name:'한과정규6 - 인삼정과·대추정과' },
+  { id:'rh7', name:'한과정규7 - 잣박산 & 깨엿강정 & 디자인엿강정' },
+  { id:'rh8', name:'한과정규8 - 새우포' },
+];
+
 goHome();
+renderCal();
 </script>
 </body>
 </html>
