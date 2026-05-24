@@ -11,9 +11,9 @@
   --ivory: #f4f1eb;
   --ivory-soft: #faf8f4;
   --ivory-mid: #e8e3d8;
-  --green-deep: #3a5442;
-  --green-mid: #587a62;
-  --green-light: #7d9e85;
+  --green-deep: #1e3d28;
+  --green-mid: #3a5442;
+  --green-light: #587a62;
   --green-mist: #e8f0e9;
   --text-dark: #28352a;
   --text-mid: #4a6050;
@@ -107,7 +107,7 @@ body {
   font-family:'Noto Serif KR',serif;
   font-size:clamp(26px,7vw,42px);
   font-weight:400; line-height:1.45;
-  color:var(--text-dark);
+  color:#9aaa9e;
   margin-bottom:18px;
   word-break:keep-all;
 }
@@ -177,7 +177,7 @@ body {
 }
 
 /* 카테고리 카드 */
-.cat-section { padding:32px 20px 40px; max-width:720px; margin:0 auto; }
+.cat-section { padding:24px 20px; max-width:720px; margin:0 auto; background:var(--ivory-soft); }
 .cat-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -187,7 +187,7 @@ body {
   background:var(--ivory-soft);
   border:1px solid var(--ivory-mid);
   border-radius:12px;
-  padding:20px 12px;
+  padding:24px 12px;
   text-align:center;
   cursor:pointer;
   transition:all 0.22s;
@@ -195,18 +195,19 @@ body {
   flex-direction:column;
   align-items:center;
   justify-content:center;
+  gap:6px;
+  min-height:90px;
 }
 .cat-card:hover {
   background:var(--green-mist);
   transform:translateY(-3px);
   box-shadow:0 6px 20px rgba(58,84,66,0.1);
 }
-.cat-icon { font-size:1.8rem; margin-bottom:10px; }
 .cat-name {
   font-family:'Noto Serif KR',serif;
-  font-size:14px; font-weight:400;
+  font-size:17px; font-weight:600;
   color:var(--green-deep);
-  margin-bottom:3px;
+  line-height:1.5;
 }
 .cat-en {
   font-family:'Cormorant Garamond',serif;
@@ -610,19 +611,21 @@ footer {
 
 <!-- HOME -->
 <div class="screen active" id="screen-home">
-  <div class="cat-section" style="padding-bottom:0">
-    <div class="cat-grid">
-      <div class="cat-card" onclick="goCategory('떡')">
-        <div class="cat-name">우리떡</div>
-        <div class="cat-en">Traditional Rice Cake</div>
-      </div>
-      <div class="cat-card" onclick="goCategory('한과')">
-        <div class="cat-name">한과</div>
-        <div class="cat-en">Korean Confection</div>
-      </div>
-      <div class="cat-card" onclick="goCategory('디저트')">
-        <div class="cat-name">한식<br>디저트</div>
-        <div class="cat-en">Korean Style Dessert</div>
+  <div style="background:var(--ivory); border-bottom:1px solid var(--ivory-mid);">
+    <div class="cat-section" style="background:none;">
+      <div class="cat-grid">
+        <div class="cat-card" onclick="goCategory('떡')">
+          <div class="cat-name">우리떡</div>
+          <div class="cat-en">Traditional Rice Cake</div>
+        </div>
+        <div class="cat-card" onclick="goCategory('한과')">
+          <div class="cat-name">한과</div>
+          <div class="cat-en">Korean Confection</div>
+        </div>
+        <div class="cat-card" onclick="goCategory('디저트')">
+          <div class="cat-name">한식<br>디저트</div>
+          <div class="cat-en">Korean Style Dessert</div>
+        </div>
       </div>
     </div>
   </div>
