@@ -187,10 +187,14 @@ body {
   background:var(--ivory-soft);
   border:1px solid var(--ivory-mid);
   border-radius:12px;
-  padding:28px 16px;
+  padding:20px 12px;
   text-align:center;
   cursor:pointer;
   transition:all 0.22s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
 }
 .cat-card:hover {
   background:var(--green-mist);
@@ -617,7 +621,7 @@ footer {
         <div class="cat-en">Korean Confection</div>
       </div>
       <div class="cat-card" onclick="goCategory('디저트')">
-        <div class="cat-name">한식디저트</div>
+        <div class="cat-name">한식<br>디저트</div>
         <div class="cat-en">Korean Style Dessert</div>
       </div>
     </div>
